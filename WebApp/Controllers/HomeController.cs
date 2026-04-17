@@ -8,13 +8,25 @@ namespace WebApp.Controllers
     {
         public IActionResult Index()
         {
-            //Uso de View Bag
+            //Uso del modelo de modelos de la vista
+            Proyector proyector = new()
+            //var proyector = new Proyector()
+            {
+                Id = 1,
+                Marca = "Epson",
+                Modelo = "PowerLite X49",
+                NumeroDeSerie = "981130",
+                Situacion = SituacionProyector.Bueno,
+                FechaDeAlta = DateTime.Now
+            };
+
+            /*Uso de View Bag
             ViewBag.Id = "1";
             ViewBag.Marca = "Epson";
             ViewBag.Modelo = "PowerLite X49";
             ViewBag.Numero_serie= "981130";
             ViewBag.Situacion = "Bueno";
-            ViewBag.FechaDeAlta = DateTime.Now.ToString("d");
+            ViewBag.FechaDeAlta = DateTime.Now.ToString("d");*/
 
             /*uso de viewdata
             ViewData["Id"] = "1";
@@ -23,7 +35,8 @@ namespace WebApp.Controllers
             ViewData["Número de serie"] = "981130";
             ViewData["Situación"] = "Bueno";
             ViewData["FechaDeAlta"] = DateTime.Now.ToString("d"); */
-            return View();
+
+            return View(proyector);
         }
 
         public IActionResult Privacy()
