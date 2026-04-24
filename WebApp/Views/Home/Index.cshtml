@@ -8,7 +8,10 @@
 {
     <div class="container">
         <h1 class="display-4 text-center">Proyectores</h1>
-        <h3 class="Text-start mb-3">Información de los propyectores registrados:</h3>
+        <div class="row mb-3">
+            <h3 class="col-10 Text-start mb-3">Información de los propyectores registrados:</h3>
+            <button class="col-2 btn btn-primary">Nuevo proyector</button>
+        </div>
         @if(Model.Any<Proyector>())
         @* @if (Model.Count<Proyector>()>0) *@
         {
