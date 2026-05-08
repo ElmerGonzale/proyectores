@@ -106,6 +106,7 @@ namespace WebApp.Controllers
 
         public IActionResult Create()
         {
+            
             Proyector proyector = new Proyector();
             proyector.FechaDeAlta = DateTime.Now;
 
@@ -115,8 +116,16 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(Proyector proyector)
         {
-            _service.AddProyector(proyector);
-            return RedirectToAction(nameof(Index));
+            if (!ModelState.IsValid)
+            {
+                return View(proyector);
+                
+            }
+            else
+            {
+                _service.AddProyector(proyector);
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         public IActionResult Privacy()
