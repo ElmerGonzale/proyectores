@@ -2,14 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Xml;
 using WebApp.Models;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private IProyectoresService _service;
+        public HomeController()
+        {
+            _service = new ProyectoresEnMemoriaService();
+            
+        }
         public IActionResult Index()
         {
-            var modelo = LoadData();
+            var modelo = _service.GetAll();
             //var modelo = new List<Proyector>();
             return View(modelo);
             //Uso del modelo de modelos de la vista
@@ -99,7 +106,17 @@ namespace WebApp.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            Proyector proyector = new Proyector();
+            proyector.FechaDeAlta = DateTime.Now;
+
+            return View(proyector);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Proyector proyector)
+        {
+            _service.AddProyector(proyector);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
