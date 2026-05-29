@@ -11,10 +11,7 @@ builder.Services.AddControllersWithViews();
 //Agregar contexto de la BD como un servicio
 builder.Services.AddDbContext<AppDbContext>(
     options => 
-    //options.usesqlserver(builder.configuration.getconnectionstring("conexion"))
-    options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Proyectores;Integrated Security=True;" +
-                         "Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;" +
-                         "Multi Subnet Failover=False;Command Timeout=30")
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection"))
 
     );
 
