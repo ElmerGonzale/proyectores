@@ -18,16 +18,20 @@ namespace WebApp.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Departamento>().ToTable("Departamentos")
+                //.HasMany(e => e.Proyector)
+                //.WithOne(e => e.Departamento)
+                //.HasForeignKey(e => e.DepartamentoId)
+                //.IsRequired()
                 .HasData(
                     new Departamento()
                     {
-                        Id=1,
-                        Titulo="DEPARTAMENTO DE SISTEMAS Y COMPUTACION"
+                        Id = 1,
+                        Titulo = "DEPARTAMENTO DE SISTEMAS Y COMPUTACION"
                     },
-                    new Departamento() 
+                    new Departamento()
                     {
                         Id = 2,
-                        Titulo ="DEPARTAMENTO DE INGENIERIA INDUSTRIAL"
+                        Titulo = "DEPARTAMENTO DE INGENIERIA INDUSTRIAL"
                     },
                     new Departamento()
                     {
@@ -55,7 +59,11 @@ namespace WebApp.Data
                         Titulo = "DEPARTAMENTO DE CIENCIAS BASICAS"
                     }
                 );
-            modelBuilder.Entity<Proyector>().ToTable("Proyectores");
+            modelBuilder.Entity<Proyector>().ToTable("Proyectores")
+                .HasOne(e => e.Departamento)
+                .WithMany(e => e.Proyector)
+                .HasForeignKey(e => e.DepartamentoId)
+                .IsRequired();
         }
 
     }
