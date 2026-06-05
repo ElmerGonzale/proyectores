@@ -1,0 +1,48 @@
+﻿@model Proyector;
+@{
+    ViewData["Title"] = "Detales del proyector";
+}
+<div class="container">
+    <h2 class="display-6 mb-3">Información del proyector #@Model.Id</h2>
+
+    <div class="bg-body-secondary p-3 mb-5 fs-5">
+
+        <div class="row">
+            <div class="form-group col">
+                <label class="form-label">Marca:</label>
+                <label class="form-label">@Model.Marca</label>
+            </div>
+
+            <div class="form-group col">
+                <label class="form-label">Modelo:</label>
+                <label class="form-label">@Model.Modelo</label>
+            </div>
+            
+            <div class="form-group col">
+                <label class="form-label">Número de serie:</label>
+                <label class="form-label">@Model.NumeroDeSerie</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group col">
+                <label class="form-label">Situación:</label>
+                <label class="form-label">@Model.Situacion</label>
+            </div>
+
+            <div class="form-group col">
+                <label class="form-label">Fecha de alta:</label>
+                <label class="form-label">@Model.FechaDeAlta.ToShortDateString()</label>
+            </div>
+
+            <div class="form-group col">
+                <label class="form-label">Fecha de baja:</label>
+                <label class="form-label">@Model.FechaDeBaja?.ToShortDateString()</label>
+            </div>
+        </div>
+        
+    </div>
+    <div class="align-content-end">
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Cerrar</a>
+    </div>
+</div>
